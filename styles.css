@@ -11,34 +11,20 @@ body {
 #board {
     display: grid;
     position: fixed;
-    top: calc(50% - 300px);
+    top: calc(50% - 350px);
     left: calc(50% - 300px);
     width: 600px;
-    height: 600px;
-    border: 1px solid red;
+    height: 700px;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-gap: 1px;
-    background-color: aqua;
+    background-color: gold;
 }
 
 .quad {
     background-color: white;
+    border-radius: 50%;
 }
 
-.pieces {
-    display: grid;
-    position: fixed;
-    width: 400px;
-    height: 700px;
-    background-color: black;
-}
 
-#player-one-pieces {
-    top: calc(25% - 100px);
-    left: calc(25% - 300px);
-}
 
-#player-two-pieces {
-    top: calc(25% - 100px);
-    left: calc(85% - 300px);
-}
