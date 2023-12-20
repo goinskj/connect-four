@@ -24,3 +24,21 @@ body {
 .quad {
     background-color: white;
 }
+
+.pieces {
+    display: grid;
+    position: fixed;
+    width: 400px;
+    height: 700px;
+    background-color: black;
+}
+
+#player-one-pieces {
+    top: calc(25% - 100px);
+    left: calc(25% - 300px);
+}
+
+#player-two-pieces {
+    top: calc(25% - 100px);
+    left: calc(85% - 300px);
+}
