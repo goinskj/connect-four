@@ -13,38 +13,33 @@ const board = [
     [0, 1, 2, 3, 4, 5],
 ]
 
+// save turn state variable, 1 === player, -1 === computer
+let i = 1
+
 // save player selections
 let playerSelections = []
 
-// capture button clicked
+// save computer selections
+let computerSelections = []
+
+// capture button clicked and do stuff when cell is clicked
 const cellClicks = document.querySelectorAll(".quad");
 
-//cal back to do stuff when cell is clicked
-for (each of cellClicks) {
-    each.addEventListener('click', function(e) {
-    console.log(e.target.id);
-    })
+for(each of cellClicks) {
+    each.addEventListener('click', render(e))
 }
 
-// function that will capture coordinate pressed
-
-
-// console.log(board[2][5])
-
-function changeColor(arg1) {
-    // change player variable state management (turn)
-    let turn = 1;
-
-    // use -1 to switch turns
-
-    // render function
-
-    // make sure no player peice in that spot
-
-
-
+// changing color of cell
+function changeColor(turn) {
+    if (turn === 1) {
+        console.log("players turn now, computers turn next")
+    } else if (turn === -1) {
+        console.log("computers turn now, players turn next")
+    }
 }
 
-function render() {
-
-}
+changeColor(i)
+// keep track of player selections
+// check if anyone has connect four
+// change turn to computer
+// execute computer selection
