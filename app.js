@@ -17,25 +17,37 @@ const board = [
 let i = 1
 
 // save player selections
-let playerSelections = []
+const playerSelections = []
 
 // save computer selections
-let computerSelections = []
+const computerSelections = []
 
 // capture button clicked and do stuff when cell is clicked
-const cellClicks = document.querySelectorAll(".quad");
-
-for (each of cellClicks) {
+const cells = document.querySelectorAll(".quad")
+for (each of cells) {
     each.addEventListener('click', function(e) {
         render(e)
     })
 }
 
+// function to save selections, change turn, update color
 function render(event) {
-    coordinates = event.target.id
-    coordArray = []
-    for (each of coordinates) {
-        coordArray.unshift(each)
+    //save selections
+    let coordinates = event.target.id
+    let coordArray = [coordinates[3], coordinates[0]]
+    console.log(i)
+    // update color
+    if (i === 1) {
+        playerSelections.unshift(coordArray)
+        console.log(coordinates)
+        document.getElementById(coordinates).style.color = "#FF000"
+        // change turn
+        i = i * -1
+    } else if (i === -1) {
+        computerSelections.unshift(coordArray)
+        console.log(coordinates)
+        document.getElementById(coordinates).style.color = "#748349"
+        // change turn
+        i = i * -1
     }
-    console.log(coordArray)
 }
