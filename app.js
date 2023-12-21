@@ -41,16 +41,17 @@ function render(event) {
 
     // Locate the last null item in column found above
     let choicesArray = boardArray[col_num]
-    for (let index = choicesArray.length - 1; index >= 0; index--) {
-        const choice = choicesArray[index];
-        if (choice === null) {
-            // Get coordinates of this choice
-            if (turn === 1) {
-                boardArray[col_num][index] = "black"
-            } else if (turn === -1) {
-                boardArray[col_num][index] = "red"
-            }
-        }  
+    for (let i = choicesArray.length - 1; i >= 0; i--) {
+        console.log(choicesArray[i]);
+        // const choice = choicesArray[index];
+        // if (choice === null) {
+        //     // Get coordinates of this choice
+        //     if (turn === 1) {
+        //         boardArray[index][col_num] = "black"
+        //     } else if (turn === -1) {
+        //         boardArray[index][col_num] = "red"
+        //     }
+        // }  
     }
-    console.log(boardArray);
+    
 }
