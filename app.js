@@ -1,6 +1,12 @@
-// grab dom elements based on id
-// state changes, man dom based on color and id in that spot
-// board array
+/* Create a function called `$` for selecting an HTML element
+--------------------------------------------------------------------- */
+function $(cssSelector) {
+    return document.querySelector(cssSelector)
+}
+
+/* All HTML elements we need to manipulate (in the order they appear in index.html)
+--------------------------------------------------------------------- */
+const cannon = $('.cannon')
 
 // Initialize board coordinates
 const board = [
@@ -13,24 +19,15 @@ const board = [
     [null, null, null, null, null, null],
 ]
 
-// save turn
-let i = 1
-
-// save player selections
-const playerSelections = []
-
-// save computer selections
-const computerSelections = []
-
-// capture button clicked and do stuff when cell is clicked
-const cells = document.querySelectorAll(".quad")
-for (each of cells) {
-    each.addEventListener('click', function(e) {
-        render(e)
-    })
-}
-
+/* Create event listeners for launching checker pieces
+--------------------------------------------------------------------- */
+// Launching a peice
+cannon.addEventListener('click', () => cannon.style.display = 'block')
+// Closing the modal
+closeModal.addEventListener('click', () => modal.style.display = 'none')
 // function to save selections, change turn, update color
+
+
 function render(event) {
     //save selections
     let coordinates = event.target.id

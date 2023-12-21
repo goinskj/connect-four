@@ -34,16 +34,19 @@ body {
     grid-template-rows: 1fr;
     width: 500px;
     height: 100px;
-    grid-gap: 10px;
-    top: calc(50% - 350px);
+    top: calc(50% - 300px);
     left: calc(50% - 225px);
-    background-color: aqua;
+    background-color: white;
 }
 
 .cannon {
     display: block;
 }
 
+.cannon-icon {
+    width: 80px;
+    height: auto;
+}
 /* <a href="https://www.flaticon.com/free-icons/cannon" title="cannon icons">Cannon icons created by Nhor Phai - Flaticon</a> */
 
 
