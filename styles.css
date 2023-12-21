@@ -27,7 +27,7 @@ body {
     border: 1px solid black;
 }
 
-.cannon-container {
+#cannon-container {
     display: grid;
     position: fixed;
     grid-template-columns: repeat(6, 1fr);

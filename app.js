@@ -4,54 +4,60 @@ function $(cssSelector) {
     return document.querySelector(cssSelector)
 }
 
-function $$(cssSelector) {
-    return document.querySelectorAll(cssSelector)
-}
-
 /* All HTML elements we need to manipulate (in the order they appear in index.html)
 --------------------------------------------------------------------- */
-const cannons = $$('.cannon-icon')
+const cannons = $('#cannon-container')
 const board = $('#board')
 const quad = $('.quad')
+let boardArray
+let turn
 
+/* Init all global state variables
+--------------------------------------------------------------------- */
 // Initialize board coordinates
-const boardArray = [
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-]
+function initState() {
+    boardArray = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null]
+    ]
 
-let turn = 1
+    turn = 1
+
+    // render()
+
+}
+
+initState()
+
 
 /* Create event listeners for launching checker pieces
 --------------------------------------------------------------------- */
 // Click listener for cannons
-for (each of cannons) {
-    each.addEventListener('click', (e) => render(e))
+cannons.addEventListener('click', handleClick)
+// player clicks, update state (array)
+function handleClick(e) {
+    // get the id of cannon clicked
+    let id = e.target.id
+    // call render function
+    render(id)
 }
 
-function render(event) {
+function render(id) {
     // Get column number
-    let col_id = event.target.id
-    let col_num = parseInt(col_id)
+    let col_num = parseInt(id)
 
     // Locate the last null item in column found above
-    let choicesArray = boardArray[col_num]
-    for (let i = choicesArray.length - 1; i >= 0; i--) {
-        console.log(choicesArray[i]);
-        // const choice = choicesArray[index];
-        // if (choice === null) {
-        //     // Get coordinates of this choice
-        //     if (turn === 1) {
-        //         boardArray[index][col_num] = "black"
-        //     } else if (turn === -1) {
-        //         boardArray[index][col_num] = "red"
-        //     }
-        // }  
+    const choicesArray = boardArray[col_num]
+
+    // Find the first null value in the array
+    for (let i=0; i < choicesArray.length; i++) {
+        if (choicesArray[i] === null) {
+            boardArray[col_num][i] = turn
+        }
     }
-    
+    console.log(boardArray)
 }
