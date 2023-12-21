@@ -56,8 +56,9 @@ function render(id) {
     // Find the first null value in the array
     for (let i=0; i < choicesArray.length; i++) {
         if (choicesArray[i] === null) {
-            boardArray[col_num][i] = turn
+            console.log(boardArray)
+            return boardArray[col_num][i] = turn
+             
         }
-    }
-    console.log(boardArray)
+    }  
 }
