@@ -39,11 +39,8 @@ body {
     background-color: white;
 }
 
-.cannon {
-    display: block;
-}
-
 .cannon-icon {
+    display: block;
     width: 80px;
     height: auto;
 }

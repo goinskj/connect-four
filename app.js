@@ -10,7 +10,7 @@ function $$(cssSelector) {
 
 /* All HTML elements we need to manipulate (in the order they appear in index.html)
 --------------------------------------------------------------------- */
-const cannons = $$('.cannon')
+const cannons = $$('.cannon-icon')
 const board = $('#board')
 const quad = $('.quad')
 
@@ -25,33 +25,32 @@ const boardArray = [
     [null, null, null, null, null, null],
 ]
 
+let turn = 1
+
 /* Create event listeners for launching checker pieces
 --------------------------------------------------------------------- */
 // Click listener for cannons
 for (each of cannons) {
-    each.addEventListener('click', (e) => console.log(e.target.id))
+    each.addEventListener('click', (e) => render(e))
 }
-// Closing the modal
-
-
 
 function render(event) {
-    // put piece on board
-    let col_sel_arr = event.target.id
-    // let col_sel = col_sel_arr[1]
-    console.log(col_sel_arr)
+    // Get column number
+    let col_id = event.target.id
+    let col_num = parseInt(col_id)
 
-
-    // // update color
-    // if (i === 1) {
-    //     boardArray[parseInt(coordinates[3]), parseInt(coordinates[0])] = "red"
-    //     console.log(boardArray)
-    //     // change turn
-    //     i = i * -1
-    // } else if (i === -1) {
-    //     boardArray[parseInt(coordinates[3]), parseInt(coordinates[0])] = "black"
-    //     console.log(boardArray)
-    //     // change turn
-    //     i = i * -1
-    // }
+    // Locate the last null item in column found above
+    let choicesArray = boardArray[col_num]
+    for (let index = choicesArray.length - 1; index >= 0; index--) {
+        const choice = choicesArray[index];
+        if (choice === null) {
+            // Get coordinates of this choice
+            if (turn === 1) {
+                boardArray[col_num][index] = "black"
+            } else if (turn === -1) {
+                boardArray[col_num][index] = "red"
+            }
+        }  
+    }
+    console.log(boardArray);
 }
