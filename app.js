@@ -4,12 +4,18 @@ function $(cssSelector) {
     return document.querySelector(cssSelector)
 }
 
+function $$(cssSelector) {
+    return document.querySelectorAll(cssSelector)
+}
+
 /* All HTML elements we need to manipulate (in the order they appear in index.html)
 --------------------------------------------------------------------- */
-const cannon = $('.cannon')
+const cannons = $$('.cannon')
+const board = $('#board')
+const quad = $('.quad')
 
 // Initialize board coordinates
-const board = [
+const boardArray = [
     [null, null, null, null, null, null],
     [null, null, null, null, null, null],
     [null, null, null, null, null, null],
@@ -21,30 +27,31 @@ const board = [
 
 /* Create event listeners for launching checker pieces
 --------------------------------------------------------------------- */
-// Launching a peice
-cannon.addEventListener('click', () => cannon.style.display = 'block')
+// Click listener for cannons
+for (each of cannons) {
+    each.addEventListener('click', (e) => console.log(e.target.id))
+}
 // Closing the modal
-closeModal.addEventListener('click', () => modal.style.display = 'none')
-// function to save selections, change turn, update color
+
 
 
 function render(event) {
-    //save selections
-    let coordinates = event.target.id
-    let coordArray = [coordinates[3], coordinates[0]]
-    console.log(i)
-    // update color
-    if (i === 1) {
-        playerSelections.unshift(coordArray)
-        console.log(coordinates)
-        document.getElementById(coordinates).style.color = "#FF000"
-        // change turn
-        i = i * -1
-    } else if (i === -1) {
-        computerSelections.unshift(coordArray)
-        console.log(coordinates)
-        document.getElementById(coordinates).style.color = "#748349"
-        // change turn
-        i = i * -1
-    }
+    // put piece on board
+    let col_sel_arr = event.target.id
+    // let col_sel = col_sel_arr[1]
+    console.log(col_sel_arr)
+
+
+    // // update color
+    // if (i === 1) {
+    //     boardArray[parseInt(coordinates[3]), parseInt(coordinates[0])] = "red"
+    //     console.log(boardArray)
+    //     // change turn
+    //     i = i * -1
+    // } else if (i === -1) {
+    //     boardArray[parseInt(coordinates[3]), parseInt(coordinates[0])] = "black"
+    //     console.log(boardArray)
+    //     // change turn
+    //     i = i * -1
+    // }
 }
