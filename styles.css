@@ -11,20 +11,40 @@ body {
 #board {
     display: grid;
     position: fixed;
-    top: calc(50% - 350px);
-    left: calc(50% - 300px);
-    width: 600px;
-    height: 700px;
+    top: calc(70% - 350px);
+    left: calc(50% - 225px);
+    width: 500px;
+    height: 550px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(7, 1fr);
-    grid-gap: 1px;
-    background-color: gold;
+    grid-gap: 10px;
+    background-color: white;
 }
 
 .quad {
     background-color: white;
     border-radius: 50%;
+    border: 1px solid black;
 }
+
+.cannon-container {
+    display: grid;
+    position: fixed;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    width: 500px;
+    height: 100px;
+    grid-gap: 10px;
+    top: calc(50% - 350px);
+    left: calc(50% - 225px);
+    background-color: aqua;
+}
+
+.cannon {
+    display: block;
+}
+
+/* <a href="https://www.flaticon.com/free-icons/cannon" title="cannon icons">Cannon icons created by Nhor Phai - Flaticon</a> */
 
 
 

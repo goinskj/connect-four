@@ -4,13 +4,13 @@
 
 // Initialize board coordinates
 const board = [
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
 ]
 
 // save turn
