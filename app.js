@@ -8,7 +8,7 @@ function $(cssSelector) {
 --------------------------------------------------------------------- */
 const cannons = $('#cannon-container')
 const board = $('#board')
-const quad = $('.quad')
+const quads = $('.quad')
 let boardArray
 let turn
 
@@ -27,12 +27,10 @@ function initState() {
 
     turn = 1
 
-    // render()
-
+    render()
 }
 
 initState()
-
 
 /* Create event listeners for launching checker pieces
 --------------------------------------------------------------------- */
@@ -41,24 +39,31 @@ cannons.addEventListener('click', handleClick)
 // player clicks, update state (array)
 function handleClick(e) {
     // get the id of cannon clicked
-    let id = e.target.id
+    let id = parseInt(e.target.id)
+
+    // get first occuring null in above column
+    let rowNum = boardArray[id].indexOf(null)
+
+    // update board state
+    boardArray[id][rowNum] = turn
+
     // call render function
-    render(id)
+    render()
+
+    //update turn
+    turn *= -1
 }
 
-function render(id) {
-    // Get column number
-    let col_num = parseInt(id)
-
-    // Locate the last null item in column found above
-    const choicesArray = boardArray[col_num]
-
-    // Find the first null value in the array
-    for (let i=0; i < choicesArray.length; i++) {
-        if (choicesArray[i] === null) {
-            console.log(boardArray)
-            return boardArray[col_num][i] = turn
-             
+function render() {
+    // Set board UI
+    for (let i = 0; i < boardArray.length; i++) {
+        for (let j = 0; j < boardArray[i].length; j++) {
+            const cell = document.getElementById(`c${i}r${j}`)
+            if (boardArray[i][j] === 1) {
+                cell.style.backgroundColor = "red"
+            } else if (boardArray[i][j] === -1) {
+                cell.style.backgroundColor = "black"
+            }
         }
-    }  
+    }
 }
