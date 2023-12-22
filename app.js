@@ -55,15 +55,23 @@ function handleClick(e) {
 }
 
 function render() {
+    const redCoords = []
+    const blackCoords = []
     // Set board UI
     for (let i = 0; i < boardArray.length; i++) {
         for (let j = 0; j < boardArray[i].length; j++) {
             const cell = document.getElementById(`c${i}r${j}`)
             if (boardArray[i][j] === 1) {
                 cell.style.backgroundColor = "red"
+                redIndexes.push([i,j])
             } else if (boardArray[i][j] === -1) {
                 cell.style.backgroundColor = "black"
+                blackIndexes.push([i,j])
             }
         }
     }
+}
+
+function checkVerticalWinner(selection) {
+    
 }
