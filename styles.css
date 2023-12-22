@@ -34,7 +34,7 @@ body {
     grid-template-rows: 1fr;
     width: 500px;
     height: 100px;
-    top: calc(50% - 300px);
+    top: calc(50% - 250px);
     left: calc(50% - 225px);
     background-color: white;
 }
@@ -43,6 +43,18 @@ body {
     display: block;
     width: 80px;
     height: auto;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    padding: 0 auto;
+    width: 100%;
+    height: auto;
+    top: calc(10%);
 }
 /* <a href="https://www.flaticon.com/free-icons/cannon" title="cannon icons">Cannon icons created by Nhor Phai - Flaticon</a> */
 
