@@ -11,7 +11,7 @@ const board = $('#board')
 const quads = $('.quad')
 let boardArray
 let turn
-
+let winner
 /* Init all global state variables
 --------------------------------------------------------------------- */
 // Initialize board coordinates
@@ -26,7 +26,7 @@ function initState() {
     ]
 
     turn = 1
-
+    winner = null
     render()
 }
 
@@ -41,37 +41,81 @@ function handleClick(e) {
     // get the id of cannon clicked
     let id = parseInt(e.target.id)
 
+    if (winner){
+        return
+    }
+
     // get first occuring null in above column
     let rowNum = boardArray[id].indexOf(null)
 
     // update board state
     boardArray[id][rowNum] = turn
 
+    //update turn
+    turn *= -1
+
+    winner = checkWinner(id, rowNum)
+
     // call render function
     render()
 
-    //update turn
-    turn *= -1
 }
 
 function render() {
-    const redCoords = []
-    const blackCoords = []
     // Set board UI
     for (let i = 0; i < boardArray.length; i++) {
         for (let j = 0; j < boardArray[i].length; j++) {
             const cell = document.getElementById(`c${i}r${j}`)
             if (boardArray[i][j] === 1) {
                 cell.style.backgroundColor = "red"
-                redIndexes.push([i,j])
             } else if (boardArray[i][j] === -1) {
                 cell.style.backgroundColor = "black"
-                blackIndexes.push([i,j])
             }
         }
     }
+    
 }
 
-function checkVerticalWinner(selection) {
+function checkWinner(col, row) {
+    const player = boardArray[col][row]
+    checkVerticalWinner(col, row, player)
+    checkHorizontalWinner(col, row, player)
+    // checkLeftDiag(col, row, player) ||
+    // checkRightDiag(col, row, player)
+    // checkTie(col, row, player)
     
+}
+
+function checkVerticalWinner(col, row, player) {
+    let count = 1
+    let startRow = row - 1
+    while (startRow >= 0 && boardArray[col][startRow] === player)  {
+        count += 1
+        startRow -= 1
+    }
+    return count >= 4 ? console.log(player) : null
+}
+
+function checkHorizontalWinner(col, row, player) {
+    let count = 1
+    
+    let startColLeft = col - 1
+    let startColRight = col + 1
+    while (startColLeft >= 0 && boardArray[startColLeft][row] === player)  {
+        count += 1
+        startColLeft -= 1
+    }
+    while (startColRight <= 5 && boardArray[startColRight][row] === player) {
+        count += 1
+        startColRight += 1
+    }
+    return count >= 4 ? console.log(player) : null
+}
+
+function checkLeftDiag(col, row, player) {
+
+}
+
+function checkRightDiag(col, row, player) {
+
 }
