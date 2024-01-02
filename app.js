@@ -113,9 +113,21 @@ function checkHorizontalWinner(col, row, player) {
 }
 
 function checkLeftDiag(col, row, player) {
+    let count = 1
+
+    let startColLeft = col - 1
+    let startRowUp = row + 1
+    let startColRight = col + 1
+    let startRowDown = row - 1
+    while (startColLeft >= 0 && boardArray[] )
+
 
 }
 
 function checkRightDiag(col, row, player) {
+
+}
+
+function checkTie(col, row, player) {
 
 }
