@@ -21,6 +21,16 @@ body {
     background-color: white;
 }
 
+#play-again {
+    display: block;
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    top: calc(98% - 50px);
+    left: calc(50% - 25px);
+
+}
+
 .quad {
     background-color: white;
     border-radius: 50%;

@@ -9,9 +9,17 @@ function $(cssSelector) {
 const cannons = $('#cannon-container')
 const board = $('#board')
 const quads = $('.quad')
+const message = $('#msg')
+const playAgain = $('#play-again')
+
 let boardArray
 let turn
 let winner
+
+/* Event Listeners
+--------------------------------------------------------------------- */
+playAgain.addEventListener('click', initState)
+
 /* Init all global state variables
 --------------------------------------------------------------------- */
 // Initialize board coordinates
@@ -41,10 +49,6 @@ function handleClick(e) {
     // get the id of cannon clicked
     let id = parseInt(e.target.id)
 
-    if (winner){
-        return
-    }
-
     // get first occuring null in above column
     let rowNum = boardArray[id].indexOf(null)
 
@@ -62,7 +66,7 @@ function handleClick(e) {
 }
 
 function render() {
-    // Set board UI
+    // Set board and markers UI
     for (let i = 0; i < boardArray.length; i++) {
         for (let j = 0; j < boardArray[i].length; j++) {
             const cell = document.getElementById(`c${i}r${j}`)
@@ -70,20 +74,42 @@ function render() {
                 cell.style.backgroundColor = "red"
             } else if (boardArray[i][j] === -1) {
                 cell.style.backgroundColor = "black"
+            } else if (boardArray[i][j] === null) {
+                cell.style.backgroundColor = "white"
             }
         }
     }
-    
+
+    // Render message & set play button
+    if (winner === null) {
+        // update message
+        if (turn === -1) {
+            message.innerHTML = "Its BLACKs turn"
+        } else if (turn === 1) {
+            message.innerHTML = "Its REDs turn"
+        }
+    } else if (winner === "TIE") {
+        message.innerHTML = 'Its a TIE!!'
+    } else if (winner === -1) {
+        message.innerHTML = 'BLACK wins!'
+    } else if (winner === 1) {
+        message.innerHTML = 'RED wins!!'
+    }
+
+    // Update play again button
+    playAgain.style.visibility = winner ? 'visible' : 'hidden'
+
 }
 
 function checkWinner(col, row) {
     const player = boardArray[col][row]
-    checkVerticalWinner(col, row, player)
-    checkHorizontalWinner(col, row, player)
-    checkLeftDiag(col, row, player)
-    // checkRightDiag(col, row, player)
-    // checkTie(col, row, player)
-    
+    const winning_player = 
+        checkVerticalWinner(col, row, player) ||
+        checkHorizontalWinner(col, row, player) ||
+        checkLeftDiag(col, row, player) ||
+        checkRightDiag(col, row, player)  ||
+        (!boardArray.flat().includes(null) ? "tie" : null)
+    return winning_player
 }
 
 function checkVerticalWinner(col, row, player) {
@@ -93,49 +119,66 @@ function checkVerticalWinner(col, row, player) {
         count += 1
         startRow -= 1
     }
-    return count >= 4 ? console.log(player) : null
+    return count >= 4 ? player : null
 }
 
 function checkHorizontalWinner(col, row, player) {
     let count = 1
-    
     let startColLeft = col - 1
     let startColRight = col + 1
     while (startColLeft >= 0 && boardArray[startColLeft][row] === player)  {
         count += 1
         startColLeft -= 1
     }
+
     while (startColRight <= 5 && boardArray[startColRight][row] === player) {
         count += 1
         startColRight += 1
     }
-    return count >= 4 ? console.log(player) : null
+
+    return count >= 4 ? player : null
 }
 
 function checkLeftDiag(col, row, player) {
     let count = 1
-
     let startColLeft = col - 1
     let startRowUp = row + 1
     let startColRight = col + 1
     let startRowDown = row - 1
+
     while (startColLeft >= 0 && boardArray[startColLeft][startRowUp] === player) {
         count += 1
         startColLeft -= 1
         startRowUp += 1
     }
+
     while (startColRight <= 5 && boardArray[startColRight][startRowDown] === player) {
         count += 1
         startColRight += 1
         startRowDown -= 1
     }
-    return count >= 4 ? console.log(player) : null
+
+    return count >= 4 ? player : null
 }
 
 function checkRightDiag(col, row, player) {
+    let count = 1
+    let startColLeft = col - 1
+    let startRowUp = row + 1
+    let startColRight = col + 1
+    let startRowDown = row - 1
 
-}
+    while (startColLeft >= 0 && boardArray[startColLeft][startRowDown] === player) {
+        count += 1
+        startColLeft -= 1
+        startRowDown -= 1
+    }
 
-function checkTie(col, row, player) {
+    while (startColRight <= 5 && boardArray[startColRight][startRowUp] === player) {
+        count += 1
+        startColRight += 1
+        startRowUp += 1
+    }
 
+    return count >= 4 ? player : null
 }
