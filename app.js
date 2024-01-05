@@ -80,7 +80,7 @@ function checkWinner(col, row) {
     const player = boardArray[col][row]
     checkVerticalWinner(col, row, player)
     checkHorizontalWinner(col, row, player)
-    // checkLeftDiag(col, row, player) ||
+    checkLeftDiag(col, row, player)
     // checkRightDiag(col, row, player)
     // checkTie(col, row, player)
     
@@ -119,9 +119,17 @@ function checkLeftDiag(col, row, player) {
     let startRowUp = row + 1
     let startColRight = col + 1
     let startRowDown = row - 1
-    while (startColLeft >= 0 && boardArray[] )
-
-
+    while (startColLeft >= 0 && boardArray[startColLeft][startRowUp] === player) {
+        count += 1
+        startColLeft -= 1
+        startRowUp += 1
+    }
+    while (startColRight <= 5 && boardArray[startColRight][startRowDown] === player) {
+        count += 1
+        startColRight += 1
+        startRowDown -= 1
+    }
+    return count >= 4 ? console.log(player) : null
 }
 
 function checkRightDiag(col, row, player) {
